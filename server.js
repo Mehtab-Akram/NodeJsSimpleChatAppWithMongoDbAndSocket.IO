@@ -9,7 +9,7 @@ const { stringify } = require('querystring');
 app.use(express.static(__dirname))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-const DbURL = 'mongodb+srv://mehtab:laserlight@cluster0.fsjaa.mongodb.net/Cluster0?retryWrites=true&w=majority';
+const DbURL = 'mongodb+srv://DbUser:Password@cluster0.fsjaa.mongodb.net/DBName?retryWrites=true&w=majority';
 const Message = mongoose.model('Message', {
     name: String,
     message: String
@@ -21,7 +21,7 @@ app.get('/messages', (req, res) => {
 })
 app.get('/messages/:user', (req, res) => {
     let user = req.params.user
-    Message.find({ name: user }, (err, messages) => {
+    Message.Find({ name: user }, (err, messages) => {
         res.send(messages)
     })
 })
